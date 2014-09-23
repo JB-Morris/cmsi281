@@ -1,6 +1,6 @@
-package edu.cmsi.mike.Homework1
-import  edu.cmsi.mike.Homework1.TDPoint.parts.TDPoint
-import edu.cmsi.mike.Homework1.TDLineSegment.TDLineSegment
+package edu.cmsi.mike.Homework1;
+import  edu.cmsi.mike.Homework1.TDPoint.parts.TDPoint;
+import edu.cmsi.mike.Homework1.TDLineSegment.TDLineSegment;
 
 public class App {
 	public static void public static void main(String[] args) {

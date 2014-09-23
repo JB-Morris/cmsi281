@@ -1,4 +1,4 @@
-package edu.cmsi.mike.Homework1.TDPoint
+package edu.cmsi.mike.Homework1.TDPoint;
 
 public class TDPoint {
 	//import java.awt.geom.Point2D.*;
@@ -22,7 +22,7 @@ public class TDPoint {
 			if(y < 0){
 				throw IllegalArgumentException("y cannot be negative.");
 			}
-		System.out.println("The point is (" x ", " y ")")
+		System.out.println("The point is (" x ", " y ")");
 
 	
 	}
@@ -41,7 +41,7 @@ public class TDPoint {
 			double a = Math.abs(p - x);
 			double b = Math.abs(q - y);
 			double c = Math.sqrt(a*a + b*b);
-			System.out.println("The distance between (" p ", " q ") " "and (" x ", " y ")" " is: " c " units.")
+			System.out.println("The distance between (" p ", " q ") " "and (" x ", " y ")" " is: " c " units.");
 			//Commented out in case I choose to give this class a return type later
 			//return c;
 		}
