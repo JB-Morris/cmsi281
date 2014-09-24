@@ -1,66 +1,71 @@
-package edu.cmsi.mike.Homework1;
+package edu.cmsi.mike.Homework1.TDLineSegment;
 
 
 public class TDLineSegment {
-	//include get midpoint, equality of self vs other line, return's whether or not it intersects with another line, returns the length of the line
+	//include get midpoint, equality of self vs other line, returns whether or not it intersects with another line, returns the length of the line
 	private double x1;
 	private double y1;
 	private double x2;
 	private double y2;
-	private double a1;
-	private double b1;
-	private double a2;
-	private double b2;
 
-	public void displayMidpoint(double x1, double y1, double x2, double y2) {
-		this.x1 = x1;
-		this.y1 = y1;
-		this.x2 = x2;
-		this.y2 = y2;
 
-		double xm = (x1 + x2)/2;
-		double ym = (y1 + y2)/2;
+    public double getX1() {
+        return x1;
+    }
+    public double getY1() {
+        return y1;
+    }
+    public double getX2() {
+        return x2;
+    }
+    public double getY2() {
+        return y2;
+    }
 
-		System.out.println("The midpoint between (" x1 ", " y1 ") and (" x2 ", " y2 ") is: (" x3 ", " y3 ").");
+
+    //set to return a point class later
+	public void displayMidpoint() {
+
+		double xm = (this.x1 + this.x2)/2;
+		double ym = (this.y1 + this.y2)/2;
+
+		System.out.println("The midpoint between (" + this.x1 + ", " + this.y1 + ") and (" + this.x2 + ", " + this.y2 + ") is: (" + xm + ", " + ym + ").");
+
+        //return ;
 	}
 
-	public void displayEquality(double x1, double y1, double x2, double y2, double a1, double b1, double a2, double b2) {
-		this.x1 = x1;
-		this.y1 = y1;
-		this.x2 = x2;
-		this.y2 = y2;
-		this.a1 = a1;
-		this.b1 = b1;
-		this.a2 = a2;
-		this.b2 = b2;
+	public boolean displayEquality(TDLineSegment line2) {
 
-
-		l1 = calculateSlope(x1, y1, x2, y2);
-		l2 = calculateSlope(a1, b1, a2, b2);
-
-
-		if(l1 == l2) {
-			System.out.println("The first and second line have equal slopes.");
-		}else {
-			System.out.println("The lines do not have equal slopes.");
-		}
+        if(this.x1 == line2.getX1() && this.y1 == line2.getY1() && this.x2 == line2.getX2() && this.y2 == line2.getY2()) {
+            return true;
+        }else {return false;}
 	}
 
 
-	private double calculateSlope(double x1, double y1, double x2, double y2) {
-		this.x1 = x1;
-		this.y1 = y1;
-		this.x2 = x2;
-		this.y2 = y2;
+	private double[] getEquation() {
+		double A, B, C;
+        A = this.getY2() - this.getY1();
+        B = this.getX2() - this.getX1();
+        C = A*this.getX1()+B*this.getY1();
+        double[] equation;
+        equation = new double[3];
+        equation[0] = A;
+        equation[1] = B;
+        equation[2] = C;
 
-		double rise = (y2 - y1);
-		double run = (x2 - x1);
-		double slope = rise/run;
+        return equation;
 
-		return slope;
 
 	}
 
-	private void checkInstersection();
+	public boolean checkInstersection(TDLineSegment line2){
+        line2.getEquation();
+        this.getEquation();
+
+
+
+    }
+
+
 	
 }

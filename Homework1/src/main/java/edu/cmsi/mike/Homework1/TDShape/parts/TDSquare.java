@@ -1,4 +1,4 @@
-package edu.cmsi.mike.Homework1;
+package edu.cmsi.mike.Homework1.TDShape.parts;
 
 public class TDSquare {
 
