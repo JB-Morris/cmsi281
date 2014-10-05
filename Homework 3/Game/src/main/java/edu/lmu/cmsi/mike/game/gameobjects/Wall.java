@@ -1,7 +1,9 @@
 package edu.lmu.cmsi.mike.game.gameobjects;
 
 public class Wall extends GameObject {
+    private char type = 'w';
 
-  public char type = 'w';
+    GameObject.getRenderedCharacter(type);
+
 
 }

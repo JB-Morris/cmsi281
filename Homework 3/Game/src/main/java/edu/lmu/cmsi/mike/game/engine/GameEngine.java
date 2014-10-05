@@ -30,7 +30,7 @@ public class GameEngine {
     this.monsters = new Monster[3];
     this.monsters[0] = new Monster(4, 3, 1, 0);
     this.monsters[1] = new Monster(10, 12, 0, 1);
-    this.monsters[2] = new GameObject(8, 17, 1, 1);
+    this.monsters[2] = new Monster(8, 17, 1, 1);
     this.trees = new Tree[4];
     this.trees[0] = new Tree(2,2);
     this.trees[1] =
