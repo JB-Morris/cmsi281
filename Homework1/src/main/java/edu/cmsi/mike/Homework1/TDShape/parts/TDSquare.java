@@ -35,8 +35,9 @@ public class TDSquare {
 		return permiter;		
 	}
 
-	public boolean checkPoint(TDPoint()) {
-		//blah
+	public boolean checkPoint(TDPoint point) {
+		point.getX();
+        point.getY();
 
 
 
