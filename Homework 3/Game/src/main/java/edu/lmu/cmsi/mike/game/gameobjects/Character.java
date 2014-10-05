@@ -6,8 +6,9 @@ import edu.lmu.cmsi.mike.game.core.Displacement;
 public class Character extends GameObject {
     private Coordinate location;
     private Displacement displacement;
+    private GameObject character;
 
-    public GameObject(int x, int y, int dx, int dy) {
+    public character(int x, int y, int dx, int dy) {
         this.location = new Coordinate(x, y);
         this.displacement = new Displacement(dx, dy);
     }
