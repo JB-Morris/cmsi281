@@ -33,8 +33,8 @@ public class GameEngine {
     this.monsters[2] = new Monster(8, 17, 1, 1);
     this.trees = new Tree[4];
     this.trees[0] = new Tree(2,2);
-    this.trees[1] =
-    this.trees[2] =
+    this.trees[1] = new Tree(5,6);
+    this.trees[2] = new Tree (10,8);
   }
 
   private void createWalls() {

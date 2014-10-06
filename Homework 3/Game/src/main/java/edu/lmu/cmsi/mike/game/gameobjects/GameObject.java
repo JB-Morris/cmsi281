@@ -19,6 +19,10 @@ public class GameObject {
         return this.location.getY();
     }
 
+    public char setType(char t) {
+        type = t;
+    }
+
     public Coordinate getLocation() {
         return this.location;
     }

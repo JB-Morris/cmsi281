@@ -2,11 +2,9 @@ package edu.lmu.cmsi.mike.game.gameobjects;
 
 public class Player extends Character{
 
-  private Character player;
+  //private Character player;
 
-  public char getRenderedCharacter() {
-    return 'p';
-  }
+  setType('p');
 
   }
 
