@@ -4,6 +4,9 @@ import edu.lmu.cmsi.mike.game.gameobjects.Wall;
 import edu.lmu.cmsi.mike.game.gameobjects.Player;
 import edu.lmu.cmsi.mike.game.gameobjects.Monster;
 import edu.lmu.cmsi.mike.game.gameobjects.Tree;
+import edu.lmu.cmsi.mike.game.gameobjects.Rock;
+
+import java.lang.Character;
 
 public class GameEngine {
 
@@ -26,15 +29,15 @@ public class GameEngine {
     // do this in a separate method to keep the constructor clean
     this.createWalls();
 
-    this.player = new Player(3, 4);
+    this.player = new Character(3, 4);
     this.monsters = new Monster[3];
-    this.monsters[0] = new Monster(4, 3, 1, 0);
-    this.monsters[1] = new Monster(10, 12, 0, 1);
-    this.monsters[2] = new Monster(8, 17, 1, 1);
+    this.monsters[0] = new Character(4, 3, 1, 0);
+    this.monsters[1] = new Character(10, 12, 0, 1);
+    this.monsters[2] = new Character(8, 17, 1, 1);
     this.trees = new Tree[4];
-    this.trees[0] = new Tree(2,2);
-    this.trees[1] = new Tree(5,6);
-    this.trees[2] = new Tree (10,8);
+    this.trees[0] = new GameObject(2,2);
+    this.trees[1] = new GameObject(5,6);
+    this.trees[2] = new GameObject(10,8);
   }
 
   private void createWalls() {
