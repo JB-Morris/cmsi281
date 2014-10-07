@@ -2,9 +2,13 @@ package edu.lmu.cmsi.mike.game.gameobjects;
 
 public class Rock extends GameObject {
 
-//    private GameObject rock;
-    public char makeRock() {
+    public Rock(int x, int y){
+        super(x, y);
+        makeRock();
+    }
+    public void makeRock() {
         setType('r');
+//        super.setType?
     }
     //GameObject.getRenderedCharacter(type);
 

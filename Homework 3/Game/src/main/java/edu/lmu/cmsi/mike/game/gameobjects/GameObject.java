@@ -19,7 +19,7 @@ public class GameObject {
         return this.location.getY();
     }
 
-    public char setType(char t) {
+    public void setType(char t) {
         type = t;
     }
 
@@ -27,7 +27,7 @@ public class GameObject {
         return this.location;
     }
 
-    public char getRenderedCharacter(char t) {
-        return t;
+    public char getRenderedCharacter() {
+        return type;
     }
 }

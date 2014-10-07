@@ -3,8 +3,10 @@ package edu.lmu.cmsi.mike.game.engine;
 import edu.lmu.cmsi.mike.game.gameobjects.Wall;
 import edu.lmu.cmsi.mike.game.gameobjects.Player;
 import edu.lmu.cmsi.mike.game.gameobjects.Monster;
+import edu.lmu.cmsi.mike.game.gameobjects.Boss;
 import edu.lmu.cmsi.mike.game.gameobjects.Tree;
 import edu.lmu.cmsi.mike.game.gameobjects.Rock;
+
 
 import java.lang.Character;
 
@@ -18,6 +20,8 @@ public class GameEngine {
   private Player player;
   private Monster[] monsters;
   private Tree[] trees;
+  private Rock[] rocks;
+  private Boss[] bosses;
 
   public GameEngine(int size) {
     if (size < 1) {
@@ -29,15 +33,22 @@ public class GameEngine {
     // do this in a separate method to keep the constructor clean
     this.createWalls();
 
-    this.player = new Character(3, 4);
-    this.monsters = new Monster[3];
-    this.monsters[0] = new Character(4, 3, 1, 0);
-    this.monsters[1] = new Character(10, 12, 0, 1);
-    this.monsters[2] = new Character(8, 17, 1, 1);
-    this.trees = new Tree[4];
-    this.trees[0] = new GameObject(2,2);
-    this.trees[1] = new GameObject(5,6);
-    this.trees[2] = new GameObject(10,8);
+    this.player = new Player(3, 2, 1, 0);
+    this.monsters = new Monster[4];
+    this.monsters[0] = new Monster(4, 3, 1, 0, 's');
+    this.monsters[1] = new Monster(10, 12, 0, 1, 'a');
+    this.monsters[2] = new Monster(8, 17, 1, 1, 'x');
+    this.monsters[3] = new Monster(5, 14, 1, 1, 'z');
+    this.trees = new Tree[3];
+    this.trees[0] = new Tree(2,2);
+    this.trees[1] = new Tree(5,6);
+    this.trees[2] = new Tree(10,8);
+    this.rocks = new Rock[2];
+    this.rocks[0] = new Rock(2,3);
+    this.rocks[1] = new Rock(5,8);
+    this.bosses = new Boss[2];
+    this.bosses[0] = new Boss(18, 18, 0, 0, 'o');
+    this.bosses[1] = new Boss(1, 18, 0, 0, 'k');
   }
 
   private void createWalls() {
@@ -88,7 +99,25 @@ public class GameEngine {
     for (int i = 0; i < this.monsters.length; i++) {
       Monster m = this.monsters[i];
       renderedWorld[m.getY()][m.getX()] = Character.toString(m.getRenderedCharacter());
+
     }
+
+    //trees
+     for (int i = 0; i < this.trees.length; i++) {
+          Tree t = this.trees[i];
+         renderedWorld[t.getY()][t.getX()] = Character.toString(t.getRenderedCharacter());
+      }
+//rocks
+     for (int i = 0; i < this.rocks.length; i++) {
+          Rock r = this.rocks[i];
+          renderedWorld[r.getY()][r.getX()] = Character.toString(r.getRenderedCharacter());
+      }
+
+//bosses
+      for (int i = 0; i < this.bosses.length; i++) {
+          Boss b = this.bosses[i];
+          renderedWorld[b.getY()][b.getX()] = Character.toString(b.getRenderedCharacter());
+      }
 
     System.out.println("=========================");
     System.out.println("Frame: " + this.frame);  // book keeping
@@ -107,6 +136,17 @@ public class GameEngine {
     }
 
     System.out.println("=========================");
+
+    System.out.println("Hits: Player: " + player.getHits());
+    for (int i = 0; i < this.monsters.length; i++) {
+        int x = i + 1;
+        System.out.println("Hits: Monster " + x + " (type: " + monsters[i].getRenderedCharacter() + "): " + monsters[i].getHits());
+    }
+    for (int i = 0; i < this.bosses.length; i++) {
+        int x = i + 1;
+        System.out.println("Hits: boss " + x + " (type: " + bosses[i].getRenderedCharacter() + "): " + bosses[i].getHits());
+    }
+
   }
 
   private void updateObjects() {
@@ -129,5 +169,30 @@ public class GameEngine {
         this.monsters[j].checkCollision(w);
       }
     }
+  }
+  private void checkHits() {
+      for (int i = 0; i < this.trees.length; i++) {
+          Tree t = this.trees[i];
+          this.player.checkHit(t);
+      }
+      for (int i = 0; i < this.rocks.length; i++) {
+          Rock r = this.rocks[i];
+          this.player.checkHit(r);
+      }
+  }
+
+  private void checkMonsterBattles() {
+      for (int i = 0; i < this.monsters.length; i++) {
+          Monster m = this.monsters[i];
+          this.player.checkBattle(m);
+          m.checkBattle(player);
+      }
+  }
+  private void checkBossBattles() {
+      for (int i = 0; i < this.bosses.length; i++) {
+          Boss b = this.bosses[i];
+          this.player.checkBattle(b);
+          b.checkBattle(player);
+      }
   }
 }

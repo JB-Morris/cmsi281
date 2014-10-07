@@ -3,11 +3,15 @@ package edu.lmu.cmsi.mike.game.gameobjects;
 public class Wall extends GameObject {
 
 //    private GameObject wall;
-    public char makeWall(){
-        setType('w');
+    public Wall(int x, int y){
+        super(x, y);
+        makeWall();
     }
-
-    //GameObject.getRenderedCharacter(type);
+        public void makeWall() {
+            setType('w');
+    //        super.setType?
+        }
+//    getRenderedCharacter(type);
 
 
 }
