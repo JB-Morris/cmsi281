@@ -33,7 +33,7 @@ public class GameEngine {
     // do this in a separate method to keep the constructor clean
     this.createWalls();
 
-    this.player = new Player(3, 2, 1, 0);
+    this.player = new Player(1, 2, 0, 1);
     this.monsters = new Monster[4];
     this.monsters[0] = new Monster(4, 3, 1, 0, 's');
     this.monsters[1] = new Monster(10, 12, 0, 1, 'a');
@@ -80,6 +80,9 @@ public class GameEngine {
     this.render();
     this.updateObjects();
     this.checkCollisions();
+    this.checkHits();
+    this.checkBossBattles();
+    this.checkMonsterBattles();
   }
 
   private void render() {
@@ -174,12 +177,26 @@ public class GameEngine {
       for (int i = 0; i < this.trees.length; i++) {
           Tree t = this.trees[i];
           this.player.checkHit(t);
+          for (int j = 0; j < this.monsters.length; j++){
+              this.monsters[j].checkHit(t);
+          }
+          for (int j = 0; j < this.bosses.length; j++){
+              this.bosses[j].checkHit(t);
+          }
       }
+
       for (int i = 0; i < this.rocks.length; i++) {
           Rock r = this.rocks[i];
           this.player.checkHit(r);
+          for (int j = 0; j < this.monsters.length; j++){
+              this.monsters[j].checkHit(r);
+          }
+          for (int j = 0; j < this.bosses.length; j++){
+              this.bosses[j].checkHit(r);
+          }
       }
   }
+
 
   private void checkMonsterBattles() {
       for (int i = 0; i < this.monsters.length; i++) {

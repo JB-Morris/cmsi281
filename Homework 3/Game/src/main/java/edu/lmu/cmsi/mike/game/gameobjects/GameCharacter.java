@@ -46,8 +46,6 @@ public class GameCharacter {
         }
     }
 
-
-
     public void checkHit(GameObject o) {
         if(this.getX() == o.getX() && this.getY() == o.getY()){
             addHit();
@@ -55,7 +53,7 @@ public class GameCharacter {
     }
 
     public void addHit(){
-        this.hits = hits ++;
+        this.hits = this.hits + 1;
     }
 
     public int getHits(){
