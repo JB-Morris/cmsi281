@@ -159,6 +159,9 @@ public class GameEngine {
     for (int i = 0; i < this.monsters.length; i++) {
       this.monsters[i].update();
     }
+    for (int i = 0; i < this.bosses.length; i++) {
+      this.bosses[i].update();
+    }
   }
 
   private void checkCollisions() {
