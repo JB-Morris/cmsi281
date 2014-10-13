@@ -56,6 +56,7 @@ public class GameEngine {
     //for now, we only care about putting walls on the edges
 
     int wallCount = 0;
+
     // calculate the amount of walls we'll need
     this.walls = new Wall[this.size * 4 - 4];
 
@@ -72,6 +73,7 @@ public class GameEngine {
       Wall y2 = new Wall(this.size - 1, y);
       walls[wallCount++] = y2;
     }
+
   }
 
   // the main upadte loop
@@ -149,7 +151,6 @@ public class GameEngine {
         int x = i + 1;
         System.out.println("Hits: boss " + x + " (type: " + bosses[i].getRenderedCharacter() + "): " + bosses[i].getHits());
     }
-
   }
 
   private void updateObjects() {

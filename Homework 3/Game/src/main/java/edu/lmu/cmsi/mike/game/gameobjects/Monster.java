@@ -29,9 +29,11 @@ public class Monster extends GameCharacter{
         setType('s');
     }
 
-    public void checkBattle(Player p) {
+    public boolean checkBattle(Player p) {
+        boolean battle = false;
         double chance = 0.0;
         if (this.getX() == p.getX() && this.getY() == p.getY()){
+            battle = true;
             char t = this.getRenderedCharacter();
             if(t == 'z' || t == 'x'){
                 chance = .5;
@@ -42,6 +44,7 @@ public class Monster extends GameCharacter{
                 addHit();
             }
         }
+        return battle;
     }
 }
 

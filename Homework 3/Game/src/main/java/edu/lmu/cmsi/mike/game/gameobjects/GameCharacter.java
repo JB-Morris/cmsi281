@@ -46,10 +46,13 @@ public class GameCharacter {
         }
     }
 
-    public void checkHit(GameObject o) {
+    public boolean checkHit(GameObject o) {
+        boolean hit = false;
         if(this.getX() == o.getX() && this.getY() == o.getY()){
             addHit();
+            hit = true;
         }
+        return hit;
     }
 
     public void addHit(){

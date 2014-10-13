@@ -10,9 +10,13 @@ public class Player extends GameCharacter{
         setType('p');
     }
 
-    public void checkBattle(GameCharacter e) {
+
+    //made the method a boolean for testing purposes and possibly for expanding functionality (indicating if a battle took place in a particular frame)
+    public boolean checkBattle(GameCharacter e) {
+        boolean battle = false;
         double chance = 0.0;
         if (this.getX() == e.getX() && this.getY() == e.getY()){
+            battle = true;
             char t = e.getRenderedCharacter();
             if(t == 'z' || t == 'x'){
                 chance = .5;
@@ -23,11 +27,11 @@ public class Player extends GameCharacter{
             }
             if ((Math.random() + .01) <= chance){
                 addHit();
+                return battle;
             }
         }
+        return battle;
     }
-
-
 }
 
 

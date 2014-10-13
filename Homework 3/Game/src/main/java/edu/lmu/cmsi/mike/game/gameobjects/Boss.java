@@ -20,9 +20,11 @@ public class Boss extends GameCharacter{
         setType('k');
     }
 
-    public void checkBattle(GameCharacter e) {
+    public boolean checkBattle(GameCharacter e) {
+        boolean battle = false;
         double chance = 0.0;
         if (this.getX() == e.getX() && this.getY() == e.getY()){
+            battle = true;
             char t = this.getRenderedCharacter();
             if(t == 'o' || t == 'k') {
                 chance = .3;
@@ -31,6 +33,7 @@ public class Boss extends GameCharacter{
                 addHit();
             }
         }
+        return battle;
     }
 }
 
