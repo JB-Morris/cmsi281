@@ -49,6 +49,14 @@ public class GameCharacterTest {
     }
 
     @Test
+    public void bossOTypeTest() {
+        ct = new Boss(0, 0, 0, 0, 'o');
+        char ty = ct.getRenderedCharacter();
+        assertEquals("Failure - Boss K didn't return expected character", 'o', ty);
+    }
+
+
+    @Test
     public void monsterAMovementTest() {
         ct = new Monster(0, 0, 1, 1, 'a');
         int x = ct.getX();
@@ -70,7 +78,7 @@ public class GameCharacterTest {
         assertEquals("Failure - Monster S didn't battle with Player", true, mb);
     }
     @Test
-    public void monsterBossBattleTest() {
+    public void playerBossBattleTest() {
         Player pt = new Player(0,0,0,0);
         Boss bt = new Boss(0,0,0,0,'k');
         boolean pb = pt.checkBattle(bt);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.004" errors="0" skipped="0" tests="9" name="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest">
+<testsuite failures="0" time="0.004" errors="0" skipped="0" tests="10" name="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_67\jre\bin"/>
@@ -64,10 +64,11 @@
   <testcase time="0.003" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerRockCollisionTest"/>
   <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="bossKTypeTest"/>
   <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerMonsterBattleTest"/>
-  <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="monsterBossBattleTest"/>
-  <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerTypeTest"/>
+  <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerBossBattleTest"/>
+  <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="bossOTypeTest"/>
+  <testcase time="0.001" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerTypeTest"/>
   <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="monsterXTypeTest"/>
   <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="monsterAMovementTest"/>
-  <testcase time="0.001" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerTreeCollisionTest"/>
+  <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="playerTreeCollisionTest"/>
   <testcase time="0" classname="edu.lmu.cmsi.mike.game.gameobjects.GameCharacterTest" name="monsterZTypeTest"/>
 </testsuite>
