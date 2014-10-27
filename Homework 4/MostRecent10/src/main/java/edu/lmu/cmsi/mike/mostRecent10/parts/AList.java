@@ -1,16 +1,25 @@
 package edu.lmu.cmsi.mike.mostRecent10.parts;
 
-import edu.lmu.cmsi.mike.mostRecent10.parts.ListCommands;
+//import edu.lmu.cmsi.mike.mostRecent10.parts.ListCommands;
+//import java.lang.Object;
+//import java.util.Arrays;
 
-public class AList<T>  implements ListCommands {
+import java.lang.SuppressWarnings;
+
+public class AList<T>  /*implements ListCommands*/ {
 
 	private T[] list;
 	private int current = -1;
 	private int size;
 
-	public AList(int s) {
+	public AList(Class<T> a, int s) {
 		size = s - 1;
-		this.list = new T[size];
+//		final T[] list = (T[]) Array.newInstance(a, size);
+//      this.list = list;
+//      @SuppressWarnings("unchecked");
+//      this.list = new T[size];
+        this.list = (T[])new Object[size];
+
 	}
 
 	public void Add(T e) {
