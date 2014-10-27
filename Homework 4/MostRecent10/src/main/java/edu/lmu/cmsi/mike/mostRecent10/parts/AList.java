@@ -4,13 +4,13 @@ import edu.lmu.cmsi.mike.mostRecent10.parts.ListCommands;
 
 public class AList<T>  implements ListCommands {
 
-	T[] list;
-	int current = -1;
-	int size;
+	private T[] list;
+	private int current = -1;
+	private int size;
 
 	public AList(int s) {
 		size = s - 1;
-//		list = new T[size];
+		this.list = new T[size];
 	}
 
 	public void Add(T e) {
@@ -19,7 +19,7 @@ public class AList<T>  implements ListCommands {
 		}
 		current++;
 		if(current <= size) {
-			list[current] = e;
+			this.list[current] = e;
 		}else if (current > size) {
             current--;
             //T temp[] = new temp[size];
@@ -27,9 +27,9 @@ public class AList<T>  implements ListCommands {
         }
         for(int i = 0; i < size; i++) {
             //temp = list[0];
-            list[i] = list[i + 1];
+            this.list[i] = this.list[i + 1];
         }
-        list[current] = e;
+        this.list[current] = e;
 	}
 
 
@@ -37,7 +37,7 @@ public class AList<T>  implements ListCommands {
         if(current == -1) {
             throw new IllegalStateException("List is empty");
         }else {
-            return list[0];
+            return this.list[0];
         }
 
     }
@@ -46,7 +46,7 @@ public class AList<T>  implements ListCommands {
         if(current == -1){
             throw new IllegalStateException("List is empty");
         }else{
-            return list[current];
+            return this.list[current];
         }
     }
 
