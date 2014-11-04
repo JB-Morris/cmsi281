@@ -1,6 +1,6 @@
 package edu.lmu.cmsi.mike.mostRecent10;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Iterator;
 
 //import java.util.Scanner;
@@ -21,7 +21,7 @@ public class App {
 // 	}
 
 	public static void main(String[] args) {
-		System.out.println("Array");
+		System.out.println("My Array");
         AList<Integer> arr = new AList<Integer>(10);
         arr.add(1);
         arr.add(2);
@@ -34,9 +34,9 @@ public class App {
         arr.add(9);
         arr.add(10);
         arr.add(11);
-//        arr.add(12);
+        arr.add(12);
         System.out.println(arr);
-        System.out.println("LinkedList");
+        System.out.println("My Linked List");
         LList<Integer> lnk = new LList<Integer>(10);
         lnk.add(1);
         lnk.add(2);
@@ -49,9 +49,24 @@ public class App {
         lnk.add(9);
         lnk.add(10);
         lnk.add(11);
+        lnk.add(12);
         System.out.println(lnk);
-        System.out.println("Array List");
-        ArrayList<Integer> arrLst = new ArrayList<Integer>();
+        System.out.println("Java Linked List");
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        linkedList.add(6);
+        linkedList.add(7);
+        linkedList.add(8);
+        linkedList.add(9);
+        linkedList.add(10);
+        linkedList.add(11);
+        linkedList.add(12);
+        System.out.println(linkedList);
+
 
 
 
