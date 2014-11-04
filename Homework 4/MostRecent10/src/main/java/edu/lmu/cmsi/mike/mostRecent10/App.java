@@ -12,17 +12,11 @@ import java.lang.Integer;
 
 public class App {
 
-// 	//private Scanner keyboard = null;
-
-// 	public App() {
-// 		//System.out.println("Add element")
-// 		new AList(10);
-
-// 	}
+private static final int SIZE = 10;
 
 	public static void main(String[] args) {
 		System.out.println("My Array");
-        AList<Integer> arr = new AList<Integer>(10);
+        AList<Integer> arr = new AList<Integer>(SIZE);
         arr.add(1);
         arr.add(2);
         arr.add(3);
@@ -36,8 +30,16 @@ public class App {
         arr.add(11);
         arr.add(12);
         System.out.println(arr);
+        System.out.println("First = " + arr.getOldest());
+        System.out.println("Last = " + arr.getNewest());
+        System.out.println("Size = " + arr.getSize());
+        System.out.println("Clear");
+        arr.reset();
+
+        System.out.println(arr);
+
         System.out.println("My Linked List");
-        LList<Integer> lnk = new LList<Integer>(10);
+        LList<Integer> lnk = new LList<Integer>(SIZE);
         lnk.add(1);
         lnk.add(2);
         lnk.add(3);
@@ -51,6 +53,14 @@ public class App {
         lnk.add(11);
         lnk.add(12);
         System.out.println(lnk);
+
+        System.out.println("First = " + lnk.getFirst());
+        System.out.println("Last = " + lnk.getLast());
+        System.out.println("Size = " + lnk.getSize());
+        System.out.println("Clear");
+        lnk.reset();
+        System.out.println(lnk);
+
         System.out.println("Java Linked List");
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
         linkedList.add(1);
@@ -65,6 +75,11 @@ public class App {
         linkedList.add(10);
         linkedList.add(11);
         linkedList.add(12);
+
+        while(linkedList.size() > SIZE) {
+            linkedList.removeFirst();
+        }
+
         System.out.println(linkedList);
 
 

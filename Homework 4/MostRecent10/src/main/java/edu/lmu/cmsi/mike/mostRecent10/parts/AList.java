@@ -2,12 +2,6 @@ package edu.lmu.cmsi.mike.mostRecent10.parts;
 
 import java.util.Iterator;
 
-//import edu.lmu.cmsi.mike.mostRecent10.parts.ListCommands;
-//import java.lang.Object;
-//import java.util.Arrays;
-
-
-
 public class AList<T> implements Iterable<T> {
 
 	private T[] list;
@@ -30,14 +24,15 @@ public class AList<T> implements Iterable<T> {
                 this.list[current] = e;
             } else if (current >= size) {
                 this.list[current] = e;
-                for (int i = size; i >= 0; i--) {
-                    list[current - 1] = list[current];
+                for (int i = 1; i <= size; i++) {
+                    this.list[i - 1] = this.list[i];
 //                    System.out.println("i = " + i);
 //                    System.out.println("size = " + size);
 //                    System.out.println("current = " + current);
 //                    System.out.println("Element = " + list[current]);
-                    current--;
+
                 }
+                current--;
             }
         }
 	}
@@ -61,10 +56,10 @@ public class AList<T> implements Iterable<T> {
     }
 
     public int getSize() {
-        if(current == -1) {
-            throw new IllegalStateException("List is empty");
+        if(current < 1) {
+            return 0;
         }else {
-            return current;
+            return current + 1;
         }
     }
 
