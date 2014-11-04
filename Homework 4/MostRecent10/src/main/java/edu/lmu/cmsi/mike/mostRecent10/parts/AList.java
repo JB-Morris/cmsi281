@@ -1,45 +1,42 @@
 package edu.lmu.cmsi.mike.mostRecent10.parts;
 
-//import java.util.Iterator;
+import java.util.Iterator;
 
 //import edu.lmu.cmsi.mike.mostRecent10.parts.ListCommands;
 //import java.lang.Object;
 //import java.util.Arrays;
 
-import java.lang.SuppressWarnings;
 
-public class AList<T>  /*implements Iterable<T>/*implements ListCommands*/ {
+
+public class AList<T> implements Iterable<T> {
 
 	private T[] list;
 	private int current = -1;
 	private int size;
 
+
 	public AList(int s) {
 		size = s;
-//		final T[] list = (T[]) Array.newInstance(a, size);
-//      this.list = list;
-//      @SuppressWarnings("unchecked");
-//      this.list = new T[size];
-        this.list = (T[])new Object[size];
+        this.list = (T[])new Object[size + 1];
 
 	}
 
-	public void Add(T e) {
+	public void add(T e) {
 		if(e == null) {
 			throw new IllegalArgumentException("Cannot add null value");
 		}else {
             current++;
-            if (current <= size) {
+            if (current < size) {
                 this.list[current] = e;
-            } else if (current > size) {
-                list[current] = e;
-                current--;
-                //T temp[] = new temp[size];
-                //T temp;
-
-                for (int i = 1; i < size; i++) {
-                    //temp = list[0];
-                    this.list[i] = this.list[i - 1];
+            } else if (current >= size) {
+                this.list[current] = e;
+                for (int i = size; i >= 0; i--) {
+                    list[current - 1] = list[current];
+//                    System.out.println("i = " + i);
+//                    System.out.println("size = " + size);
+//                    System.out.println("current = " + current);
+//                    System.out.println("Element = " + list[current]);
+                    current--;
                 }
             }
         }
@@ -75,7 +72,16 @@ public class AList<T>  /*implements Iterable<T>/*implements ListCommands*/ {
         current = -1;
     }
 
-//    public Iterator<T> iterator() {
-//        return new AListIterator<T>(this.list[current]);
-//    }
+    public String toString() {
+        String str = "";
+        for(int i = 0; i <= current; i++) {
+            str += list[i] + ", ";
+        }
+        return str;
+    }
+
+
+    public Iterator<T> iterator() {
+        return new AListIterator<T>(list);
+    }
 }

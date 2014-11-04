@@ -1,22 +1,23 @@
 package edu.lmu.cmsi.mike.mostRecent10.parts;
 
 import edu.lmu.cmsi.mike.mostRecent10.parts.Node;
+import java.util.Iterator;
 
-public class LList<T> {
+public class LList<T> implements Iterable<T>{
 
-    private Node head;
+    private Node<T> head;
     private int counter;
     private int size;
 
     public LList(int s) {
-        head = new Node(null);
+        head = new Node<T>(null);
         counter = 0;
         size = s;
     }
 
     public void add(T component) {
-        Node temp = new Node(component);
-        Node current = head;
+        Node<T> temp = new Node<T>(component);
+        Node<T> current = head;
         while(current.getNext() != null) {
             current = current.getNext();
         }
@@ -28,16 +29,16 @@ public class LList<T> {
         }
 
     }
-    public Object getLast() {
-        Node current = head;
+    public T getLast() {
+        Node<T> current = head;
         while(current.getNext() != null) {
             current = current.getNext();
         }
-        return current;
+        return current.getValue();
     }
 
-    public Object getFirst() {
-        return head.getNext();
+    public T getFirst() {
+        return head.getNext().getValue();
 
     }
 
@@ -47,6 +48,19 @@ public class LList<T> {
 
     public void reset() {
         head.setNext(null);
+    }
+    public Iterator<T> iterator() {
+        return new LListIterator<T>(head);
+    }
+
+    public String toString() {
+        String str = "";
+        Node current = this.head;
+        while(current.getNext() != null) {
+            current = current.getNext();
+            str += current.getValue() + ", ";
+        }
+        return str;
     }
 
     private void trim() {

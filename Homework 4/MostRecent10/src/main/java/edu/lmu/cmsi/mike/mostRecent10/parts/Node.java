@@ -1,6 +1,7 @@
 package edu.lmu.cmsi.mike.mostRecent10.parts;
 
-public class Node<T> {
+
+public class Node<T>{
 
 	private T component = null;
 	private Node<T> next = null;
@@ -10,19 +11,19 @@ public class Node<T> {
     private Node<T> root = null;
     private T value = null;
     private int size;
-    private int current = 0;
+    private int counter = 0;
     private int subtractor = 0;
 
 
 	public Node(T component) {
 		this.component = component;
 //        size = s;
-//        int index = this.current;
+//        int index = this.counter;
 	}
 
 
 	public T getValue() {
-		return this.value;
+		return this.component;
 	}
 
     public Node<T> getNext() {
@@ -31,8 +32,8 @@ public class Node<T> {
 
 	public void setNext(Node<T> next) {
         this.next = next;
-        this.current = this.current++;
-        if(current > size){
+        this.counter = this.counter++;
+        if(counter > size){
 
         }
 	}
