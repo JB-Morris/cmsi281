@@ -81,6 +81,12 @@ private static final int SIZE = 10;
         }
 
         System.out.println(linkedList);
+        linkedList.peekFirst();
+        linkedList.peekLast();
+        linkedList.size();
+        linkedList.clear();
+        System.out.println(linkedList);
+
 
 
 
