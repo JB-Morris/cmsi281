@@ -2,6 +2,7 @@ package edu.lmu.cmsi.mike.mostRecent10.parts;
 
 import edu.lmu.cmsi.mike.mostRecent10.parts.Node;
 
+import java.lang.IllegalArgumentException;
 import java.lang.IllegalStateException;
 import java.util.Iterator;
 
@@ -18,6 +19,9 @@ public class LList<T> implements Iterable<T>{
     }
 
     public void add(T component) {
+        if(component == null) {
+            throw new IllegalArgumentException("Cannot add null value");
+        }
         Node<T> temp = new Node<T>(component);
         Node<T> current = head;
         while(current.getNext() != null) {

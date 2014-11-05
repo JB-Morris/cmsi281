@@ -56,7 +56,7 @@ public class AList<T> implements Iterable<T> {
     }
 
     public int getSize() {
-        if(current < 1) {
+        if(current == -1) {
             return 0;
         }else {
             return current + 1;

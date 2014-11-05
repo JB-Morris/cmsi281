@@ -1,18 +1,19 @@
 package edu.lmu.cmsi.mike.mostRecent10;
 
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.Iterator;
 
 //import java.util.Scanner;
 
 import edu.lmu.cmsi.mike.mostRecent10.parts.AList;
 import edu.lmu.cmsi.mike.mostRecent10.parts.LList;
+import edu.lmu.cmsi.mike.mostRecent10.parts.MyLinkedList;
 
 import java.lang.Integer;
 
 public class App {
 
-private static final int SIZE = 10;
+    private static final int SIZE = 10;
 
 	public static void main(String[] args) {
 		System.out.println("My Array");
@@ -62,7 +63,7 @@ private static final int SIZE = 10;
         System.out.println(lnk);
 
         System.out.println("Java Linked List");
-        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>(SIZE);
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
@@ -76,15 +77,12 @@ private static final int SIZE = 10;
         linkedList.add(11);
         linkedList.add(12);
 
-        while(linkedList.size() > SIZE) {
-            linkedList.removeFirst();
-        }
-
         System.out.println(linkedList);
-        linkedList.peekFirst();
-        linkedList.peekLast();
-        linkedList.size();
-        linkedList.clear();
+        System.out.println("First = " + linkedList.getOldest());
+        System.out.println("Last = " + linkedList.getNewest());
+        System.out.println("Size = "  + linkedList.getSize());
+        System.out.println("Clear");
+        linkedList.reset();
         System.out.println(linkedList);
 
 
