@@ -23,13 +23,14 @@ public class App {
 
         String parenInput1 = "()()()()[][][][]";
         String parenInput2 = "(]";
+        String parenInput3 = "((())";
 
 
-        Fibonacci fib = new Fibonacci(fibInput);
+        Fibonacci fib = new Fibonacci();
         fibOutput = fib.FibonacciCounter(fibInput);
         System.out.println(fibOutput);
 
-        Multiply mult = new Multiply(multInput1, multInput2);
+        Multiply mult = new Multiply();
         multOutput = mult.multiply(multInput1, multInput2);
         System.out.println(multOutput);
 
@@ -44,6 +45,8 @@ public class App {
         balanceOutput = balCheck.check(parenInput2);
         System.out.println("Parenthetic balance: " + balanceOutput);
 
+        balanceOutput = balCheck.check(parenInput3);
+        System.out.println("Parenthetic balance: " + balanceOutput);
 
     }
 }

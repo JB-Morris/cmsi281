@@ -1,6 +1,7 @@
 package edu.lmu.cmsi.mike.recursivesorting.parts;
 
 public class StringToInt {
+
     public static int x = 0;
     public static int integer;
 
@@ -12,7 +13,9 @@ public class StringToInt {
         integer = Integer.parseInt(Character.toString(y.charAt(index)));
         x += integer * times;
         if (index == 0) {
-            return x;
+            int z = x;
+            x = 0;
+            return z;
         }
         return converter(y, --index, times * 10);
     }
