@@ -1,6 +1,8 @@
 package edu.lmu.cmsi.tree;
 
 import edu.lmu.cmsi.tree.node.BinaryTreeNode;
+import edu.lmu.cmsi.tree.exception.DuplicateItemException;
+import edu.lmu.cmsi.tree.exception.ItemNotFoundException;
 
 import java.lang.Integer;
 import java.util.ArrayList;
@@ -28,6 +30,9 @@ public class IntegerBinarySearchTree {
      */
     public void insert(int x) {
 //    throw new UnsupportedOperationException("Insert needs to be implemented");
+        if (contains(x)){
+            throw new DuplicateItemException("x already exists");
+        }
         inserter(x, root);
     }
 
@@ -40,7 +45,9 @@ public class IntegerBinarySearchTree {
     public int findSmallestValue() {
 //        throw new UnsupportedOperationException("findSmallestValue needs to be implemented");
         BinaryTreeNode node = root;
-        if (node != null) {
+        if (node == null) {
+            throw new ItemNotFoundException("there is no smallest value");
+        }else if (node != null) {
             while(node.getLeft() != null) {
                 node = node.getLeft();
             }
@@ -56,7 +63,9 @@ public class IntegerBinarySearchTree {
     public int findLargestValue() {
 //        throw new UnsupportedOperationException("findLargestValue needs to be implemented");
         BinaryTreeNode node = root;
-        if (node != null) {
+        if (node == null) {
+            throw new ItemNotFoundException("there is no largest value");
+        }else if (node != null) {
             while(node.getRight() != null) {
                 node = node.getRight();
             }
@@ -89,7 +98,8 @@ public class IntegerBinarySearchTree {
         preOrderList.clear();
         preOrder(root);
         int size = preOrderList.size();
-        return preOrderList.toArray(new Integer[size]);
+        Integer[] integers = preOrderList.toArray(new Integer[size]);
+        return integers;
 
     }
 
@@ -103,7 +113,8 @@ public class IntegerBinarySearchTree {
         inOrderList.clear();
         inOrder(root);
         int size = inOrderList.size();
-        return inOrderList.toArray(new Integer[size]);
+        Integer[] integers = inOrderList.toArray(new Integer[size]);
+        return integers;
     }
 
     /**
@@ -116,7 +127,8 @@ public class IntegerBinarySearchTree {
         postOrderList.clear();
         postOrder(root);
         int size = postOrderList.size();
-        return postOrderList.toArray(new Integer[size]);
+        Integer[] integers = postOrderList.toArray(new Integer[size]);
+        return integers;
     }
 
     /**
@@ -129,7 +141,8 @@ public class IntegerBinarySearchTree {
         breadthFirstOrderList.clear();
         breadthFirstOrder(root);
         int size = breadthFirstOrderList.size();
-        return breadthFirstOrderList.toArray(new Integer[size]);
+        Integer[] integers = postOrderList.toArray(new Integer[size]);
+        return integers;
     }
 
     private BinaryTreeNode inserter(int x, BinaryTreeNode node) {
