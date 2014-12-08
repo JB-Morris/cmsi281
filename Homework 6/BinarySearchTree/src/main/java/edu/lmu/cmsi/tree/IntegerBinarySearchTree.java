@@ -5,6 +5,7 @@ import edu.lmu.cmsi.tree.exception.DuplicateItemException;
 import edu.lmu.cmsi.tree.exception.ItemNotFoundException;
 
 import java.lang.Integer;
+import java.lang.System;
 import java.util.ArrayList;
 import java.util.Queue;
 
@@ -12,11 +13,11 @@ public class IntegerBinarySearchTree {
 
     protected BinaryTreeNode root;
 
-    private ArrayList<Integer> preOrderList = new ArrayList<Integer>();
-    private ArrayList<Integer> inOrderList = new ArrayList<Integer>();
-    private ArrayList<Integer> postOrderList = new ArrayList<Integer>();
-    private ArrayList<Integer> breadthFirstOrderList = new ArrayList<Integer>();
-    private Queue<BinaryTreeNode> queue;
+    private ArrayList<Integer> OrderList = new ArrayList<Integer>();
+
+//add order list to every method it is used in and pass it as a perameter for the recursive events within it
+
+    private ArrayList<BinaryTreeNode> queue = new ArrayList<BinaryTreeNode>();
 
     public IntegerBinarySearchTree() {
         this.root = null;
@@ -29,11 +30,20 @@ public class IntegerBinarySearchTree {
      * @throws edu.lmu.cmsi.tree.exception.DuplicateItemException if x exists.
      */
     public void insert(int x) {
-//    throw new UnsupportedOperationException("Insert needs to be implemented");
-        if (contains(x)){
-            throw new DuplicateItemException("x already exists");
+        root = inserter(x, root);
+    }
+
+    private BinaryTreeNode inserter(int x, BinaryTreeNode node) {
+        if (node == null) { //if node == root
+            return new BinaryTreeNode(x); //root =
+        }else if (node.getValue() == x){
+            throw new DuplicateItemException(x + "is a duplicate input");
+        }else if (node.getValue() > x) {
+            node.setLeft(inserter(x, node.getLeft()));
+        } else {
+            node.setRight(inserter(x, node.getRight()));
         }
-        inserter(x, root);
+        return node;
     }
 
     /**
@@ -43,7 +53,6 @@ public class IntegerBinarySearchTree {
      * @throws edu.lmu.cmsi.tree.exception.ItemNotFoundException
      */
     public int findSmallestValue() {
-//        throw new UnsupportedOperationException("findSmallestValue needs to be implemented");
         BinaryTreeNode node = root;
         if (node == null) {
             throw new ItemNotFoundException("there is no smallest value");
@@ -61,7 +70,6 @@ public class IntegerBinarySearchTree {
      * @throws edu.lmu.cmsi.tree.exception.ItemNotFoundException
      */
     public int findLargestValue() {
-//        throw new UnsupportedOperationException("findLargestValue needs to be implemented");
         BinaryTreeNode node = root;
         if (node == null) {
             throw new ItemNotFoundException("there is no largest value");
@@ -78,14 +86,19 @@ public class IntegerBinarySearchTree {
      * @return true if the value exists, false otherwise
      */
     public boolean contains(int value) {
-//        throw new UnsupportedOperationException("contains needs to be implemented");
-        BinaryTreeNode node = finder(value, root);
+        return finder(value, root);
+    }
+
+    private boolean finder(int value, BinaryTreeNode node) {
         if (node == null) {
             return false;
-        }else{
+        }else if (node.getValue() == value) {
             return true;
+        }else if (node.getValue() > value) {
+            return finder(value, node.getLeft());
+        }else {
+            return finder(value, node.getRight());
         }
-
     }
 
     /**
@@ -94,12 +107,19 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toPreOrder() {
-//        throw new UnsupportedOperationException("toPreOrder needs to be implemented");
-        preOrderList.clear();
+        OrderList.clear();
         preOrder(root);
-        int size = preOrderList.size();
-        Integer[] integers = preOrderList.toArray(new Integer[size]);
+        int size = OrderList.size();
+        Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
+
+    }
+    private BinaryTreeNode preOrder(BinaryTreeNode node) {
+        if (node != null) {
+            OrderList.add(node.getValue());
+            preOrder(node.getLeft());
+            preOrder(node.getRight());
+        }return node;
 
     }
 
@@ -109,12 +129,19 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toInOrder() {
-//        throw new UnsupportedOperationException("toInOrder needs to be implemented");
-        inOrderList.clear();
+        OrderList.clear();
         inOrder(root);
-        int size = inOrderList.size();
-        Integer[] integers = inOrderList.toArray(new Integer[size]);
+        int size = OrderList.size();
+        Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
+    }
+
+    private BinaryTreeNode inOrder (BinaryTreeNode node) {
+        if (node != null) {
+            inOrder(node.getLeft());
+            OrderList.add(node.getValue());
+            inOrder(node.getRight());
+        }return node;
     }
 
     /**
@@ -123,12 +150,19 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toPostOrder() {
-//        throw new UnsupportedOperationException("toPostOrder needs to be implemented");
-        postOrderList.clear();
+        OrderList.clear();
         postOrder(root);
-        int size = postOrderList.size();
-        Integer[] integers = postOrderList.toArray(new Integer[size]);
+        int size = OrderList.size();
+        Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
+    }
+
+    private BinaryTreeNode postOrder (BinaryTreeNode node) {
+        if (node != null) {
+            postOrder(node.getLeft());
+            postOrder(node.getRight());
+            OrderList.add(node.getValue());
+        }return node;
     }
 
     /**
@@ -137,75 +171,27 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toBreadthFirstOrder() {
-//        throw new UnsupportedOperationException("toBreadthFirstOrder needs to be implemented");
-        breadthFirstOrderList.clear();
+        OrderList.clear();
         breadthFirstOrder(root);
-        int size = breadthFirstOrderList.size();
-        Integer[] integers = postOrderList.toArray(new Integer[size]);
+        int size = OrderList.size();
+        Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
     }
 
-    private BinaryTreeNode inserter(int x, BinaryTreeNode node) {
-        if (node == null) {
-            node = new BinaryTreeNode(x);
-        } else if (node.getLeft().getValue() < x) {
-            node.setLeft(inserter(x, node.getLeft()));
-        } else if (node.getRight().getValue() > x) {
-            node.setRight(inserter(x, node.getRight()));
-        } else {
-//            throw new DuplicateItemException(x + "is a duplicate input");
-        }
-        return node;
-    }
-
-    private BinaryTreeNode finder(int value, BinaryTreeNode node) {
-        while(node != null) {
-            if(node.getLeft().getValue() < value) {
-                node = node.getLeft();
-            }else if (node.getRight().getValue() > value) {
-                node = node.getRight();
-            }else {
-                return node;
-            }
-
-        }
-        return null;
-    }
-    private BinaryTreeNode preOrder(BinaryTreeNode node) {
-        if (node != null) {
-            preOrderList.add(node.getValue());
-            preOrder(node.getLeft());
-            preOrder(node.getRight());
-        }return node;
-
-    }
-    private BinaryTreeNode inOrder (BinaryTreeNode node) {
-        if (node != null) {
-            inOrderList.add(node.getValue());
-            inOrder(node.getLeft());
-            inOrder(node.getRight());
-        }return node;
-    }
-    private BinaryTreeNode postOrder (BinaryTreeNode node) {
-        if (node != null) {
-            postOrderList.add(node.getValue());
-            postOrder(node.getLeft());
-            postOrder(node.getRight());
-        }return node;
-    }
     private BinaryTreeNode breadthFirstOrder(BinaryTreeNode node) {
         if (node != null) {
-            queue.offer(node);
+            queue.add(node);
             while(!queue.isEmpty()) {
-                node = queue.poll();
-                breadthFirstOrderList.add(node.getValue());
+                node = queue.remove(0);
+                OrderList.add(node.getValue());
+                if (node.getLeft() != null) {
+                    queue.add(node.getLeft());
+                }
+                if (node.getRight() != null) {
+                    queue.add(node.getRight());
+                }
             }
-            if (node.getLeft() != null) {
-                queue.offer(node.getLeft());
-            }
-            if (node.getRight() != null) {
-                queue.offer(node.getRight());
-            }
+
         }
         return node;
     }
