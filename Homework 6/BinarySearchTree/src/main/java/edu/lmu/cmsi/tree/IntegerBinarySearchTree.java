@@ -13,11 +13,6 @@ public class IntegerBinarySearchTree {
 
     protected BinaryTreeNode root;
 
-    private ArrayList<Integer> OrderList = new ArrayList<Integer>();
-
-//add order list to every method it is used in and pass it as a perameter for the recursive events within it
-
-    private ArrayList<BinaryTreeNode> queue = new ArrayList<BinaryTreeNode>();
 
     public IntegerBinarySearchTree() {
         this.root = null;
@@ -107,18 +102,19 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toPreOrder() {
-        OrderList.clear();
-        preOrder(root);
+        ArrayList<Integer> OrderList = new ArrayList<Integer>();
+//        OrderList.clear();
+        preOrder(root, OrderList);
         int size = OrderList.size();
         Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
 
     }
-    private BinaryTreeNode preOrder(BinaryTreeNode node) {
+    private BinaryTreeNode preOrder(BinaryTreeNode node, ArrayList<Integer> OrderList) {
         if (node != null) {
             OrderList.add(node.getValue());
-            preOrder(node.getLeft());
-            preOrder(node.getRight());
+            preOrder(node.getLeft(), OrderList);
+            preOrder(node.getRight(), OrderList);
         }return node;
 
     }
@@ -129,18 +125,19 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toInOrder() {
-        OrderList.clear();
-        inOrder(root);
+        ArrayList<Integer> OrderList = new ArrayList<Integer>();
+//        OrderList.clear();
+        inOrder(root, OrderList);
         int size = OrderList.size();
         Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
     }
 
-    private BinaryTreeNode inOrder (BinaryTreeNode node) {
+    private BinaryTreeNode inOrder (BinaryTreeNode node, ArrayList<Integer> OrderList) {
         if (node != null) {
-            inOrder(node.getLeft());
+            inOrder(node.getLeft(), OrderList);
             OrderList.add(node.getValue());
-            inOrder(node.getRight());
+            inOrder(node.getRight(), OrderList);
         }return node;
     }
 
@@ -150,17 +147,18 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toPostOrder() {
-        OrderList.clear();
-        postOrder(root);
+        ArrayList<Integer> OrderList = new ArrayList<Integer>();
+//        OrderList.clear();
+        postOrder(root, OrderList);
         int size = OrderList.size();
         Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
     }
 
-    private BinaryTreeNode postOrder (BinaryTreeNode node) {
+    private BinaryTreeNode postOrder (BinaryTreeNode node, ArrayList<Integer> OrderList) {
         if (node != null) {
-            postOrder(node.getLeft());
-            postOrder(node.getRight());
+            postOrder(node.getLeft(), OrderList);
+            postOrder(node.getRight(), OrderList);
             OrderList.add(node.getValue());
         }return node;
     }
@@ -171,14 +169,16 @@ public class IntegerBinarySearchTree {
      * @return an array of Integers, or empty if the tree is empty.
      */
     public Integer[] toBreadthFirstOrder() {
-        OrderList.clear();
-        breadthFirstOrder(root);
+        ArrayList<Integer> OrderList = new ArrayList<Integer>();
+        ArrayList<BinaryTreeNode> queue = new ArrayList<BinaryTreeNode>();
+//        OrderList.clear();
+        breadthFirstOrder(root, queue, OrderList);
         int size = OrderList.size();
         Integer[] integers = OrderList.toArray(new Integer[size]);
         return integers;
     }
 
-    private BinaryTreeNode breadthFirstOrder(BinaryTreeNode node) {
+    private BinaryTreeNode breadthFirstOrder(BinaryTreeNode node, ArrayList<BinaryTreeNode> queue, ArrayList<Integer> OrderList) {
         if (node != null) {
             queue.add(node);
             while(!queue.isEmpty()) {
